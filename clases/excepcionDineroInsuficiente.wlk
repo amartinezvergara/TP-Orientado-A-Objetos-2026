@@ -1,3 +1,3 @@
-class ExcepcionDineroInsuficiente inherits Excepcion(message = "Dinero Insuficiente para comprar la entrada"){
+class ExcepcionDineroInsuficiente inherits Exception(message = "Dinero Insuficiente para comprar la entrada"){
     
 }
