@@ -1,5 +1,5 @@
 class Banda{
-    const nombre
+    const property nombre
     const canonBase = 1000000
     method presupuesto() = self.canon()
     method popularidad()
