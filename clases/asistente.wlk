@@ -1,11 +1,12 @@
 import clases.entrada.*
 import objetos.productora.*
+import clases.excepcionDineroInsuficiente.*
 
 class Asistente{
     const property historialEntradas = []
     var dineroDisponible
 
-    const tipoDeAbono
+    const property tipoDeAbono
 
     method comprarEntrada(entrada){
         const precio = entrada.precioAlPublico() * (1 - tipoDeAbono.descuento())

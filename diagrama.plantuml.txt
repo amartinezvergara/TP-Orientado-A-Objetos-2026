@@ -1,0 +1,123 @@
+@startuml
+object productora{
+impuestoAEntradas
+bandas
+asistentes
+--
+impuestoAEntradas()
+impuestoAEntradas(numero)
+bandas()
+asistentes()
+aniadirBanda(banda)
+aniadirAsistente(asistente)
+todasLasEntradasVendidas()
+gananciaTotal()
+cantidadEntradasVendidas()
+laBandaMasPopular()
+bonificarAsistentesVip()
+}
+
+object abonoFan{
+descuento()
+bonificar()
+}
+
+class AbonoVip{
+descuento()
+bonificar()
+}
+
+class BandaDeRock{
+nombre
+canonBase = 1000000
+cantSolosDeGuitarra
+--
+nombre()
+canon()
+presupuesto()
+popularidad()
+}
+
+class BandaIndie{
+nombre
+canonBase
+cantInstrumentos
+--
+nombre()
+canon()
+presupuesto()
+popularidad()
+}
+
+class BandaDeTrap{
+nombre
+canonBase
+tieneHielo
+--
+nombre()
+canon()
+presupuesto()
+popularidad()
+}
+
+class Banda{
+nombre
+canonBase
+--
+nombre()
+canon()
+presupuesto()
+popularidad()
+}
+
+class Entrada{
+banda
+fecha
+precioBase
+--
+banda()
+fecha()
+precioAlPublico()
+}
+
+class Asistente{
+historialEntradas
+dineroDisponible
+tipoDeAbono
+--
+historialEntradas()
+tipoDeAbono()
+comprarEntrada(entrada)
+historialEntradasAnioAnterior()
+nombreDeBandasVistas()
+}
+
+class ExcepcionDineroInsuficiente{
+message()
+}
+
+interface abono{
+descuento()
+bonificar()
+}
+
+productora --> "*" Banda
+productora ..> Banda
+productora --> "*" Asistente
+Entrada ..> Asistente
+
+BandaDeRock --|> Banda
+BandaDeTrap --|> Banda
+BandaIndie --|> Banda
+
+Entrada --> Banda
+Entrada ..> productora
+
+Asistente --> "*" Entrada
+Asistente --> Entrada
+Asistente ..> ExcepcionDineroInsuficiente
+Asistente --> abono
+
+AbonoVip ..|> abono
+abonoFan ..|> abono
+@enduml
