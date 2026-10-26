@@ -39,8 +39,8 @@ object productora{
     }
 
     method bonificarAsistentesVip(){
-        asistentes.forEach({asistente => if (asistente.tipoAbono() != abonoFan){
-        asistente.tipoAbono().bonificar()}})
+        asistentes.forEach({asistente => if (asistente.tipoDeAbono() != abonoFan){
+        asistente.tipoDeAbono().bonificar()}})
     }
     
 
