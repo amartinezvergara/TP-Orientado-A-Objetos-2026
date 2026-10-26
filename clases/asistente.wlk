@@ -10,7 +10,7 @@ class Asistente{
     method comprarEntrada(entrada){
         const precio = entrada.precioAlPublico() * (1 - tipoDeAbono.descuento())
 
-        if (precio > dineroDisponible) console.println("Saldo insuficiente, cancelando compra")
+        if (precio > dineroDisponible) throw new ExcepcionDineroInsuficiente()
         else{dineroDisponible -= precio
         historialEntradas.add(entrada)
     }
