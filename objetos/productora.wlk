@@ -30,12 +30,12 @@ object productora{
         return recaudacionTotal - perdidaTotal
     }
 
-    method cantidadEntradasVendidas() = self.todasLasEntradasVendidas().length()
+    method cantidadEntradasVendidas() = self.todasLasEntradasVendidas().size()
 
     method laBandaMasPopular(){
 
         return bandas.max({bandaEvaluar =>
-        self.cantidadEntradasVendidas().map({entrada => entrada.banda()}).count(bandaEvaluar)})
+        self.cantidadEntradasVendidas().map({entrada => entrada.banda()}).count({banda => banda == bandaEvaluar})})
     }
 
     method bonificarAsistentesVip(){
