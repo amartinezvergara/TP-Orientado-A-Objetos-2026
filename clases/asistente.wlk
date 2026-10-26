@@ -22,6 +22,6 @@ class Asistente{
         const hoy = new Date()
         return historialEntradas.filter({entrada => entrada.fecha().year() == hoy.year() - 1})
     }
-    method nombreDeBandasVistas() = historialEntradas.map({entrada => entrada.banda()}).asSet()
+    method nombreDeBandasVistas() = historialEntradas.map({entrada => entrada.banda().nombre()}).asSet()
 
 }
