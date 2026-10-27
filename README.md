@@ -36,9 +36,9 @@ El asistente es una clase, tiene un atributo historialEntradas, inicialmente es 
 
 * Existen 2 tipos de abono, el abono VIP que tiene un descuento y el abono fan, que no tiene un descuento.
 
-* Como el abono VIP puede tener un porcentaje de descuento distinto, lo hice como una clase para que cada instancia defina el porcentaje de descuento. Como el abono fan no tiene descuento, lo hice como un objeto con el método descuento() = 0
+* Como el abono VIP puede tener un porcentaje de descuento distinto, lo hice como una clase para que cada instancia defina el porcentaje de descuento en el atributo descuento que es una variable. Hice el getter de descuento aparte ya que necesito usarlo desde otros objetos y necesito que sea una variable para modificarlo, pero esta modificación solo la hago desde el método bonificar() en la clase AbonoVip, que le suma 0.01, no quiero poder modificar directamente. Como el abono fan no tiene descuento, lo hice como un objeto con el método descuento() = 0
 
-* Más tarde se implementó la funcionalidad de bonificar asistentes vip, el cual añade 1% de descuento extra a los asistentes vip, este método fue definido en la clase AbonoVip para hacer justamente eso, y en el objeto abonoFan es un método vacío.
+* Más tarde se implementó la funcionalidad de bonificar asistentes vip, que mencioné antes en la justificación para como declarar el atributo descuento en la clase AbonoVip, este método añade 1% de descuento extra a los asistentes vip, en el objeto abonoFan es un método vacío.
 
 * Ambos actúan de forma polimórfica como interfaz, ya que ambos tipos de abono entienden el mensaje de descuento() y bonificacion()
 
