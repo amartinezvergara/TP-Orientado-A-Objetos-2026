@@ -1,10 +1,13 @@
 class Banda{
     const property nombre
     const canonBase = 1000000
+
+    method canon() = canonBase // para que las bandas de trap puedan overridear el canon
+
     method presupuesto() = self.canon()
     method popularidad()
 
-    method canon() = canonBase // para que las bandas de trap puedan overridear el canon
+    
 }
 
 class BandaDeRock inherits Banda{
@@ -28,7 +31,7 @@ class BandaDeTrap inherits Banda{
 }
 
 class BandaIndie inherits Banda{
-    const cantidadDeInstrumentos
+    const cantInstrumentos
     override method popularidad() = 3.14 * nombre.length()
-    override method presupuesto() = super() + 500 * cantidadDeInstrumentos
+    override method presupuesto() = super() + 500 * cantInstrumentos
 }

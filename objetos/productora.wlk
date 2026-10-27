@@ -5,9 +5,11 @@ import clases.asistente.*
 import clases.abonoVip.*
 object productora{
 
-    const bandas = []
+    var property impuestoAEntradas = 0 //inicialmente en cero ya que no especifica, lo puede modificar cuando quiera.
 
-    const asistentes = []
+    const bandas = #{} //para que no se puedan repetir bandas
+
+    const asistentes = #{} //para que no se puedan repetir asistentes
 
     method aniadirBanda(banda){
         bandas.add(banda)
@@ -16,17 +18,12 @@ object productora{
      method aniadirAsistente(asistente){
         asistentes.add(asistente)
     }
-    
-    method impuestoAEntradas() = 0 //
 
-    method todasLasEntradasVendidas(){
-        return asistentes.flatMap({asistente => asistente.historialEntradas()})
-    }
+    method todasLasEntradasVendidas() = asistentes.flatMap({asistente => asistente.historialEntradas()})
 
     method gananciaTotal (){
         const recaudacionTotal = self.todasLasEntradasVendidas().sum({entrada => entrada.precioAlPublico()})
-        const perdidaTotal = bandas.sum({banda =>
-        banda.presupuesto()})
+        const perdidaTotal = bandas.sum({banda => banda.presupuesto()})
         return recaudacionTotal - perdidaTotal
     }
 
@@ -35,12 +32,11 @@ object productora{
     method laBandaMasPopular(){
 
         return bandas.max({bandaEvaluar =>
-        self.cantidadEntradasVendidas().map({entrada => entrada.banda()}).count({banda => banda == bandaEvaluar})})
+        self.todasLasEntradasVendidas().map({entrada => entrada.banda()}).count({banda => banda == bandaEvaluar})})
     }
 
     method bonificarAsistentesVip(){
-        asistentes.forEach({asistente => if (asistente.tipoDeAbono() != abonoFan){
-        asistente.tipoDeAbono().bonificar()}})
+        asistentes.forEach({asistente => asistente.tipoDeAbono().bonificar()})
     }
     
 
