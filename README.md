@@ -32,13 +32,37 @@ Se overridea el método del presupuesto para que retorne super() + 500 * cantIns
 
 ## Asistente
 
-El asistente tiene un atributo historialEntradas, inicialmente es una lista vacía al que se la irán añadiendo las entradas una vez las compre, también tiene el atributo dinero disponible y el atributo tipoDeAbono
+El asistente es una clase, tiene un atributo historialEntradas, inicialmente es una lista vacía al que se la irán añadiendo las entradas una vez las compre, también tiene el atributo dinero disponible y el atributo tipoDeAbono
 
-Existen 2 tipos de abono, el abono VIP que tiene un descuento y el abono fan, que no tiene un descuento.
+* Existen 2 tipos de abono, el abono VIP que tiene un descuento y el abono fan, que no tiene un descuento.
 Como el abono VIP puede tener un porcentaje de descuento distinto, lo hice como una clase para que cada instancia defina el porcentaje de descuento. Como el abono fan no tiene descuento, lo hice como un objeto con el método descuento() = 0
-Ambos actuan de forma polimórfica ya que ambos tipos de abono entienden el mensaje de descuento()
+Ambos actúan de forma polimórfica como interfaz, ya que ambos tipos de abono entienden el mensaje de descuento()
 
-El método comprarEntrada, recibe una entrada, se calcula el precio aplicándole el descuento del tipo de abono, luego si tiene dinero suficiente para pagar la entrada, se le resta el precio a su dinero disponible y se añade la entrada a historialEntradas.
+El método comprarEntrada, recibe una entrada, se calcula el precio aplicándole el descuento del tipo de abono, luego si tiene dinero suficiente para pagar la entrada, se le resta el precio a su dinero disponible y se añade la entrada a historialEntradas, si no tiene dinero, se tira una excepción de ExcepcionDineroInsuficiente, subclase de Exception creada con el mensaje "Dinero Insuficiente para comprar la entrada"
+
+El método historialEntradasAnioAnterior, filtra la lista historialEntradas para solo devolver las entradas cuyo año sea igual al año anterior a la fecha de correr el programa. Aqui se utiliza un objeto temporal que solo vive dentro del método, const hoy = new Date()
+
+El método nombreDeBandasVistas, realiza un map a la lista historialEntradas para obtener una lista solo con el nombre de las bandas, la cual se convierte en un set para eliminar los repetidos.
+
+## Productora
+
+Como la productora es solo una, es un objeto, esta tiene los atributos impuestoAEntradas que arranca inicializada en 0 (porque no se especifica un monto inicial), es un varProperty para poder acceder a ella desde la entrada para calcular el precio final, y para poder modificarla, cosa que es requerida por el sistema.
+
+También tiene los atributos bandas y asistentes, ambos inicializados como sets vacíos para que no puedan repetirse elementos, no tiene sentido guardar dos veces la misma banda o el mismo asistente como sí entradas, por ejemplo.
+
+Creé los métodos aniadirBanda(banda) y aniadirAsistente(asistente) simplemente para tener una forma de añadir elementos a los sets.
+
+El método todasLasEntradasVendidas es un método auxiliar que se utiliza en los varios métodos requeridos por el sistema, se encarga de hacer un flatMap de cada historialEntradas de cada asistente en el set asistentes, su único propósito es no repetir lógica.
+
+El método gananciaTotal realiza una sumatoria del precioFinal de cada entrada vendida, se le resta la sumatoria del presupuesto de cada banda y retorna la diferencia.
+
+El método laBandaMasPopular retorna la banda que más entradas vendió, para eso realizo un max de la lista de bandas, cuya condicion sea un count de las veces que aparece la banda en la lista de todas las entradas vendidas.
+
+Por último, el método bonificarAsistentesVip, es un método de efecto que hace un forEach con la lista de asistentes, a la cual
+
+
+
+
 
 
 
