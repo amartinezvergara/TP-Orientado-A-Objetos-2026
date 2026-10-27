@@ -23,6 +23,8 @@ bonificar()
 }
 
 class AbonoVip{
+descuento
+--
 descuento()
 bonificar()
 }
