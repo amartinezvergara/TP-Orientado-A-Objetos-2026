@@ -46,7 +46,7 @@ El método comprarEntrada, recibe una entrada, se calcula el precio aplicándole
 
 Se aplicó manejo de errores haciendo que se tire una excepción de ExcepcionDineroInsuficiente justamente si no tiene dinero para comprar la entrada
 
-*ExcepcionDineroInsuficiente es una subclase de Exception siempre creada ya con el atributo mensaje reemplazado por "Dinero Insuficiente para comprar la entrada"
+* ExcepcionDineroInsuficiente es una subclase de Exception siempre creada ya con el atributo mensaje reemplazado por "Dinero Insuficiente para comprar la entrada"
 
 El método historialEntradasAnioAnterior, filtra la lista historialEntradas para solo devolver las entradas cuyo año sea igual al año anterior a la fecha de correr el programa. Aqui se utiliza un objeto temporal que solo vive dentro del método, const hoy = new Date()
 
