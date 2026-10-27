@@ -35,10 +35,18 @@ Se overridea el método del presupuesto para que retorne super() + 500 * cantIns
 El asistente es una clase, tiene un atributo historialEntradas, inicialmente es una lista vacía al que se la irán añadiendo las entradas una vez las compre, también tiene el atributo dinero disponible y el atributo tipoDeAbono
 
 * Existen 2 tipos de abono, el abono VIP que tiene un descuento y el abono fan, que no tiene un descuento.
-Como el abono VIP puede tener un porcentaje de descuento distinto, lo hice como una clase para que cada instancia defina el porcentaje de descuento. Como el abono fan no tiene descuento, lo hice como un objeto con el método descuento() = 0
-Ambos actúan de forma polimórfica como interfaz, ya que ambos tipos de abono entienden el mensaje de descuento()
 
-El método comprarEntrada, recibe una entrada, se calcula el precio aplicándole el descuento del tipo de abono, luego si tiene dinero suficiente para pagar la entrada, se le resta el precio a su dinero disponible y se añade la entrada a historialEntradas, si no tiene dinero, se tira una excepción de ExcepcionDineroInsuficiente, subclase de Exception creada con el mensaje "Dinero Insuficiente para comprar la entrada"
+* Como el abono VIP puede tener un porcentaje de descuento distinto, lo hice como una clase para que cada instancia defina el porcentaje de descuento. Como el abono fan no tiene descuento, lo hice como un objeto con el método descuento() = 0
+
+* Más tarde se implementó la funcionalidad de bonificar asistentes vip, el cual añade 1% de descuento extra a los asistentes vip, este método fue definido en la clase AbonoVip para hacer justamente eso, y en el objeto abonoFan es un método vacío.
+
+* Ambos actúan de forma polimórfica como interfaz, ya que ambos tipos de abono entienden el mensaje de descuento() y bonificacion()
+
+El método comprarEntrada, recibe una entrada, se calcula el precio aplicándole el descuento del tipo de abono, luego si tiene dinero suficiente para pagar la entrada, se le resta el precio a su dinero disponible y se añade la entrada a historialEntradas.
+
+Se aplicó manejo de errores haciendo que se tire una excepción de ExcepcionDineroInsuficiente justamente si no tiene dinero para comprar la entrada
+
+*ExcepcionDineroInsuficiente es una subclase de Exception siempre creada ya con el atributo mensaje reemplazado por "Dinero Insuficiente para comprar la entrada"
 
 El método historialEntradasAnioAnterior, filtra la lista historialEntradas para solo devolver las entradas cuyo año sea igual al año anterior a la fecha de correr el programa. Aqui se utiliza un objeto temporal que solo vive dentro del método, const hoy = new Date()
 
@@ -58,7 +66,7 @@ El método gananciaTotal realiza una sumatoria del precioFinal de cada entrada v
 
 El método laBandaMasPopular retorna la banda que más entradas vendió, para eso realizo un max de la lista de bandas, cuya condicion sea un count de las veces que aparece la banda en la lista de todas las entradas vendidas.
 
-Por último, el método bonificarAsistentesVip, es un método de efecto que hace un forEach con la lista de asistentes, a la cual
+Por último, el método bonificarAsistentesVip, es un método de efecto que hace un forEach con la lista de asistentes, haciendo que al tipoDeAbono de cada asistente se le aplica el método de bonificar, como mencioné antes, ambos tipos de abono entienden el mensaje, solo que uno de ellos hace realmente algo, dando como resultado que solo los abonos vip se vean modificados.
 
 
 
